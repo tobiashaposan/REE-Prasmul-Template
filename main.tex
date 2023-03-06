@@ -1,0 +1,108 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[a4paper, left=4cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[numbers,sort&compress]{modnatbib}
+\usepackage{setspace}
+\setstretch{1.5}
+\usepackage{adjustbox}
+%\usepackage{showframe} %use this to check if any items overlap with paper margins
+
+%setpagenumberlocation
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear the header and footer
+\fancyfoot[R]{\thepage} % put the page number on the right side of the footer
+\renewcommand{\headrulewidth}{0pt}
+
+% Set fonts and spacing
+\renewcommand{\familydefault}{ptm}
+\setstretch{1.5}
+
+% Set figure and table caption style
+\captionsetup[figure]{font=small,labelfont={bf},labelsep=period,justification=centering}
+\captionsetup[table]{font=small,labelfont={bf},labelsep=newline,justification=centering}
+\usepackage{float}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\captionsetup[table]{labelsep=space,singlelinecheck=false}
+\counterwithin{figure}{section}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\captionsetup[figure]{labelsep=space,singlelinecheck=false}
+
+\usepackage{titlesec}
+
+% Section style
+\titleformat{\section}[display]
+{\fontsize{14}{16}\selectfont\centering\normalfont\bfseries}
+{SECTION \thesection}{0.1em}{\MakeUppercase}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+% Subsection style
+\titleformat{\subsection}
+{\normalfont\bfseries}
+{\thesubsection}{12pt}{}
+% Subsubsection style
+\titleformat{\subsubsection}
+{\normalfont\bfseries}
+{\thesubsubsection}{12pt}{}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=blue,urlcolor=blue}
+
+\usepackage{lipsum}
+
+\begin{document}
+
+%PART1 COVER%
+\pagenumbering{gobble}
+\input{content-headers/cover-subcover}
+
+%PART2 ADMINDOCS%
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+\input{content-headers/legalstuff} \newpage
+\input{content-headers/acknowledgement} \newpage
+\input{content-headers/abstract}
+
+% Insert a table of contents
+\newpage
+\renewcommand\contentsname{}
+\section*{Table of Contents}
+\tableofcontents
+
+\newpage
+\listoffigures
+\listoftables
+
+%PART3 CONTENT%
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\section{Introduction}
+\input{content-par/01-introduction}
+
+\newpage \section{Literature review}
+\input{content-par/02-litreview}
+
+\newpage \section{Methodology}
+\input{content-par/03-methodology}
+
+\newpage \section{Discussion}
+\input{content-par/04-discussion}
+
+\newpage \section{Conclusion}
+\input{content-par/05-conclusion}
+
+\newpage
+\section*{References}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtranN}
+\renewcommand{\refname}{}
+\bibliography{references}
+
+\end{document}
